@@ -17,8 +17,6 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id ;
 
-
-
     @OneToOne()
     private Coupon coupon;
 

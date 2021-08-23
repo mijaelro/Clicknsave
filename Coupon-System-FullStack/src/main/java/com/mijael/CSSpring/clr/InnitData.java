@@ -42,21 +42,21 @@ public class InnitData implements CommandLineRunner {
         System.out.println(ArtUtils.COUPON);
         System.out.println("Adding coupons");
 
-        Coupon c = Coupon.createNewCoupon(1, CategoryType.ELECTRONICS, IOService.generateImage("Samsung.png"), "Samsung ","Up to 30% Off For Students, Educators & More");
+        Coupon c  = Coupon.createNewCoupon(1,  CategoryType.ELECTRONICS,  IOService.generateImage("Samsung.png"), "Samsung ","Up to 30% Off For Students, Educators & More");
         Coupon c1 = Coupon.createNewCoupon(2, CategoryType.ELECTRONICS, IOService.generateImage("BestBuy.png"),"BestBuy ","Over 50% Off Or More on Electronics");
         Coupon c2 = Coupon.createNewCoupon(3, CategoryType.ELECTRONICS, IOService.generateImage("Origin.png"),"Origin ","Extra 20% Off Sitewide Purchase");
         Coupon c3 = Coupon.createNewCoupon(4, CategoryType.ELECTRONICS, IOService.generateImage("Nintendo.png"),"Nintendo ","$20 Off Select Games");
-        Coupon c4= Coupon.createNewCoupon(5, CategoryType.ELECTRONICS, IOService.generateImage("Nvidia.png"),"Nvidia ","$30 Off 3D Wired Glasses");
+        Coupon c4 = Coupon.createNewCoupon(5,  CategoryType.ELECTRONICS,  IOService.generateImage("Nvidia.png"),"Nvidia ","$30 Off 3D Wired Glasses");
         Coupon c5 = Coupon.createNewCoupon(0, CategoryType.ELECTRONICS, IOService.generateImage("Amazon.png"),"Amazon ","Up to 70% Off Select Electronics at Outlet");
         Coupon c6 = Coupon.createNewCoupon(0, CategoryType.ELECTRONICS, IOService.generateImage("PSN.png"),"PSN ","Up to 35% Off Playstation Deals");
         Coupon c7 = Coupon.createNewCoupon(0, CategoryType.ELECTRONICS, IOService.generateImage("Acer.png"),"Acer ","$300 Off The Swift 3 Laptop");
 
-        Coupon c8 = Coupon.createNewCoupon(1, CategoryType.RESTAURANT, IOService.generateImage("Dominos.png"),"Dominos","30% Off Select Items");
-        Coupon c9 = Coupon.createNewCoupon(2, CategoryType.RESTAURANT, IOService.generateImage("Subway.png"),"SubWay discount","2 Footlongs For the price of 1");
+        Coupon c8  = Coupon.createNewCoupon(1, CategoryType.RESTAURANT, IOService.generateImage("Dominos.png"),"Dominos","30% Off Select Items");
+        Coupon c9  = Coupon.createNewCoupon(2, CategoryType.RESTAURANT, IOService.generateImage("Subway.png"),"SubWay discount","2 Footlongs For the price of 1");
         Coupon c10 = Coupon.createNewCoupon(3, CategoryType.RESTAURANT, IOService.generateImage("PapaJohns.png"),"Papa Johns ","25% Off Your Full-priced Order");
         Coupon c11 = Coupon.createNewCoupon(4, CategoryType.RESTAURANT, IOService.generateImage("McDonalds.png"),"Mc Donald's ","Free fries With Your Online Purchase");
         Coupon c12 = Coupon.createNewCoupon(5, CategoryType.RESTAURANT, IOService.generateImage("BurgerKing.png"),"Burger King ","Buy 1, Get 1 For $1 on Select Entrees");
-        Coupon c13= Coupon.createNewCoupon(0, CategoryType.RESTAURANT, IOService.generateImage("TacoBell.png"),"Taco Bell ","2x1 in any meal");
+        Coupon c13 = Coupon.createNewCoupon(0, CategoryType.RESTAURANT, IOService.generateImage("TacoBell.png"),"Taco Bell ","2x1 in any meal");
         Coupon c14 = Coupon.createNewCoupon(0, CategoryType.RESTAURANT,  IOService.generateImage("KFC.png"),"KFC ","all you can eat ");
 
         Coupon c15 = Coupon.createNewCoupon(1, CategoryType.LIFE_STYLE,  IOService.generateImage("ShoePalace.png"),"Shoe Palace","Air Jordan Retro 9 Pantone Low Men's Lifestyle Shoe with 40%");
