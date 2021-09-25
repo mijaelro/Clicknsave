@@ -36,6 +36,7 @@ public class TokenFilter implements Filter {
                 ||url.endsWith("coupons")
                 ||url.endsWith("start")
                 ||url.endsWith("coupon")
+                ||url.endsWith("details")
                 ||url.endsWith("1")
                 ||url.endsWith("2")
                 ||url.endsWith("3")

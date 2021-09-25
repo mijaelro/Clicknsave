@@ -24,7 +24,8 @@ public class TokenManager {
         return information.getClientService();
     }
 
-    public String addToken(ClientService clientService, ClientType clientType,int clientId,String clientName) {
+    public String addToken(ClientService clientService, ClientType clientType,int clientId,
+                           String clientName,String clientLastName,String email,String password) {
         removePreviewsTokenById(clientId);
         String token = UUID.randomUUID().toString();
         Information information = Information
@@ -34,6 +35,9 @@ public class TokenManager {
                 .clientType(clientType)
                 .clientId(clientId)
                 .clientName(clientName)
+                .clientLastName(clientLastName)
+//                .clientLastName(email)
+//                .clientLastName(password)
                 .build();
         map.put(token, information);
         System.out.println("from Add token " + map.get(token));

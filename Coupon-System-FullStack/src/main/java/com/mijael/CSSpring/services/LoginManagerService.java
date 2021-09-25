@@ -32,7 +32,8 @@ public class LoginManagerService {
                 if (((AdminServiceImpl) adminService).logIn(email, password)) {
                     int adminId = 0;
                     String name = "ADMIN";
-                    String token = tokenManager.addToken((ClientService) adminService, ClientType.ADMINISTRATOR, adminId,name);
+                    String lastName = "ADMIN";
+                    String token = tokenManager.addToken((ClientService) adminService, ClientType.ADMINISTRATOR, adminId,name,lastName,email,password);
                     return token;
                 }
             case COMPANY:
@@ -40,7 +41,8 @@ public class LoginManagerService {
                 if (((CompanyServiceImpl) companyService).logIn(email, password)) {
                     int companyId = ((CompanyServiceImpl) companyService).getCompanyId();
                     String name = ((CompanyServiceImpl)companyService).getCompanyName();
-                    String token = tokenManager.addToken((ClientService) companyService, ClientType.COMPANY, companyId,name);
+                    String lastName = "";
+                    String token = tokenManager.addToken((ClientService) companyService, ClientType.COMPANY, companyId,name,lastName,email,password);
                     return token;
                 }
             case CUSTOMER:
@@ -48,7 +50,8 @@ public class LoginManagerService {
                 if (((CustomerServiceImpl) customerService).logIn(email, password)) {
                     int customerId = ((CustomerServiceImpl) customerService).getCustomerId();
                     String name = ((CustomerServiceImpl)customerService).getCustomerName();
-                    String token = tokenManager.addToken((ClientService) customerService, ClientType.CUSTOMER, customerId ,name);
+                    String lastName = ((CustomerServiceImpl)customerService).getCustomerLastName();
+                    String token = tokenManager.addToken((ClientService) customerService, ClientType.CUSTOMER, customerId ,name,lastName,email,password);
                     return token;
                 }
         }

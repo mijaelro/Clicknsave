@@ -14,8 +14,10 @@ public class Response {
     @Enumerated(EnumType.STRING)
     ClientType clientType;
     String clientName;
+    String clientLastName;
     int clientId;
     String clientEmail;
+    String clientPassword;
 
 
 }

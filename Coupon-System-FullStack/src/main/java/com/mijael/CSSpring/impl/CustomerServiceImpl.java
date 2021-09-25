@@ -27,6 +27,7 @@ public class CustomerServiceImpl extends ClientService implements CustomerServic
 	private final TokenManager tokenManager;
 	private int customerId;
 	private String customerName;
+	private String customerLastName;
 
 
 	@Override
@@ -37,6 +38,7 @@ public class CustomerServiceImpl extends ClientService implements CustomerServic
 		}
 		customerId = customerRepository.findByEmailAndPassword(email, password).getId();
 		customerName = customerRepository.findByEmailAndPassword(email, password).getFirstName();
+		customerLastName = customerRepository.findByEmailAndPassword(email, password).getLastName();
 		System.out.println("the customer id is : " + customerId);
 		return isLoggedIn;
 

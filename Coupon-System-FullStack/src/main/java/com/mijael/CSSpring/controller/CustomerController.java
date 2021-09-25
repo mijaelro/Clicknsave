@@ -2,6 +2,7 @@ package com.mijael.CSSpring.controller;
 
 import java.util.List;
 
+import com.mijael.CSSpring.beans.Customer;
 import com.mijael.CSSpring.security.TokenManager;
 import com.mijael.CSSpring.services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,10 +66,10 @@ import lombok.RequiredArgsConstructor;
 
     @GetMapping("details")
     @ResponseStatus(code = HttpStatus.OK)
-    public void getCustomerDetails(@RequestHeader ("Authorization") String token)
+    public Customer getCustomerDetails(@RequestHeader ("Authorization") String token)
             throws IllegalActionException {
         customerService= (CustomerService) tokenManager.getService(token);
-        customerService.getCustomersDetails();
+       return  customerService.getCustomersDetails();
     }
 
 }

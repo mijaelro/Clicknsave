@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.mijael.CSSpring.beans.Company;
 import com.mijael.CSSpring.beans.Image;
 import com.mijael.CSSpring.controller.model.UploadCoupon;
 import com.mijael.CSSpring.security.TokenManager;
@@ -118,9 +119,9 @@ import javax.servlet.http.HttpServletResponse;
 
     @GetMapping("details")
     @ResponseStatus(code = HttpStatus.OK)
-    public void getCompanyDetails(@RequestHeader ("Authorization") String token )
+    public Company getCompanyDetails(@RequestHeader ("Authorization") String token )
             throws IllegalActionException{
      companyService= (CompanyService) tokenManager.getService(token);
-        companyService.getCompanyDetails();
+        return companyService.getCompanyDetails();
     }
 }

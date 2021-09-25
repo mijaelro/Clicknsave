@@ -37,6 +37,10 @@ public  class ClientController {
 		response.setClientType(information.getClientType());
 		response.setClientId(information.getClientId());
 		response.setClientName(information.getClientName());
+		response.setClientLastName(information.getClientLastName());
+		response.setClientId(information.getClientId());
+		response.setClientEmail(loginDetails.getEmail());
+		response.setClientPassword(loginDetails.getPassword());
 
 		return new ResponseEntity(response,HttpStatus.CREATED);
 	};
