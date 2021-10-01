@@ -36,8 +36,6 @@ public class TokenManager {
                 .clientId(clientId)
                 .clientName(clientName)
                 .clientLastName(clientLastName)
-//                .clientLastName(email)
-//                .clientLastName(password)
                 .build();
         map.put(token, information);
         System.out.println("from Add token " + map.get(token));

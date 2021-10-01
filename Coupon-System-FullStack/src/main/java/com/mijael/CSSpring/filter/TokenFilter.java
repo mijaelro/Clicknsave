@@ -2,7 +2,11 @@ package com.mijael.CSSpring.filter;
 
 import com.mijael.CSSpring.enums.ClientType;
 import com.mijael.CSSpring.security.TokenManager;
+import com.mijael.CSSpring.services.AdminService;
+import com.mijael.CSSpring.services.CompanyService;
+import com.mijael.CSSpring.services.CustomerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +21,16 @@ import java.io.IOException;
 public class TokenFilter implements Filter {
 
     private final TokenManager tokenManager;
+
+    @Autowired
+    private CompanyService companyService;
+
+    @Autowired
+    private CustomerService customerService;
+
+    @Autowired
+    private AdminService adminService;
+
     private final static String ADMIN = "admin";
     private final static String CUSTOMER = "customer";
     private final static String COMPANY = "company";
@@ -36,7 +50,6 @@ public class TokenFilter implements Filter {
                 ||url.endsWith("coupons")
                 ||url.endsWith("start")
                 ||url.endsWith("coupon")
-                ||url.endsWith("details")
                 ||url.endsWith("1")
                 ||url.endsWith("2")
                 ||url.endsWith("3")
@@ -64,16 +77,19 @@ public class TokenFilter implements Filter {
 
             switch (type) {
                 case ADMIN:
+                    adminService = (AdminService) tokenManager.getService(token);
                     tokenManager.isControllerAllowed(ClientType.ADMINISTRATOR,token);
                     break;
                 case CUSTOMER:
+                    customerService = (CustomerService) tokenManager.getService(token);
                     tokenManager.isControllerAllowed( ClientType.CUSTOMER,token);
                     break;
                 case COMPANY:
+                    companyService = (CompanyService) tokenManager.getService(token);
                     tokenManager.isControllerAllowed(ClientType.COMPANY,token);
                     break;
             }
-            filterChain.doFilter((HttpServletRequest) servletRequest, (HttpServletResponse) servletResponse);
+            filterChain.doFilter(servletRequest,servletResponse);
 
         } catch (Exception e) {
             ((HttpServletResponse) servletResponse).sendError(401, e.getMessage());

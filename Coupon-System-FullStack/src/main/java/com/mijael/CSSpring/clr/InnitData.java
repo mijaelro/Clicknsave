@@ -21,7 +21,7 @@ import com.mijael.CSSpring.utils.ArtUtils;
 
 import lombok.RequiredArgsConstructor;
 
-@Component
+//@Component
 @RequiredArgsConstructor
 @Order(1)
 public class InnitData implements CommandLineRunner {

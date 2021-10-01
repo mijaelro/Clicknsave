@@ -19,7 +19,5 @@ public class Information {
 	private ClientType clientType;
 	private String clientName;
 	private String clientLastName;
-//	private String clientEmail;
-//	private String clientPassword;
 
 }

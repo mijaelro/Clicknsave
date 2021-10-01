@@ -35,7 +35,6 @@ import javax.servlet.http.HttpServletResponse;
 
    public class CompanyController  {
 
-    private final TokenManager tokenManager;
     private final IOService IOService;
     private final ImageService imageService;
 
@@ -46,7 +45,6 @@ import javax.servlet.http.HttpServletResponse;
  public String getImage(@PathVariable int id , HttpServletResponse response) throws IOException, IllegalActionException {
         Coupon coupon = companyService.getOneCoupon(id);
         Image image =  coupon.getImage();
-        System.out.println("test imagee1234213"+image);
     response.setHeader("Content-Disposition", "inline;filename=\"" + image.getImage().toString() + "\"");
     OutputStream out = response.getOutputStream();
     response.setContentType(MediaType.IMAGE_PNG_VALUE);
@@ -56,17 +54,13 @@ import javax.servlet.http.HttpServletResponse;
  }
 
 
-    @PostMapping( value = "coupon"
-            ,
+    @PostMapping( value = "coupon",
             consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE}
-    )
+            produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseStatus(code = HttpStatus.CREATED)
     public @ResponseBody
     UploadCoupon addCoupon(@RequestHeader ("Authorization") String token ,@ModelAttribute UploadCoupon coupon)
             throws IllegalActionException, SaveException, SQLException, IOException {
-
-     companyService= (CompanyService) tokenManager.getService(token);
      return companyService.addCouponPayLoad(coupon);
     }
 
@@ -74,7 +68,6 @@ import javax.servlet.http.HttpServletResponse;
     @ResponseStatus(code = HttpStatus.OK)
     public Coupon updateCoupon(@RequestHeader ("Authorization") String token ,@RequestBody Coupon coupon)
             throws IllegalActionException, SaveException, IOException {
-      companyService= (CompanyService) tokenManager.getService(token);
     return companyService.updateCoupon(coupon);
     }
 
@@ -82,7 +75,6 @@ import javax.servlet.http.HttpServletResponse;
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteCoupon(@RequestHeader ("Authorization") String token ,@PathVariable int couponId)
             throws IllegalActionException{
-     companyService= (CompanyService) tokenManager.getService(token);
         companyService.deleteCoupon(couponId);
     }
 
@@ -90,30 +82,24 @@ import javax.servlet.http.HttpServletResponse;
     @ResponseStatus(code = HttpStatus.OK)
     public Coupon getCoupon(@RequestHeader ("Authorization") String token ,@PathVariable int couponId)
             throws IllegalActionException{
-     companyService= (CompanyService) tokenManager.getService(token);
         return companyService.getOneCoupon(couponId);
     }
 
     @GetMapping("coupons")
     @ResponseStatus(code = HttpStatus.OK)
     public List<Coupon> getCompanyCoupons(@RequestHeader ("Authorization") String token ) {
-     System.out.println(token);
-     System.out.println(companyService);
-     companyService= (CompanyService) tokenManager.getService(token);
      return companyService.getCompanyCoupons();
     }
 
     @GetMapping("coupons/{category}")
     @ResponseStatus(code = HttpStatus.OK)
     public List<Coupon> getCompanyCoupons(@RequestHeader ("Authorization") String token ,@PathVariable CategoryType category) {
-     companyService= (CompanyService) tokenManager.getService(token);
         return companyService.getCompanyCoupons(category);
     }
 
     @GetMapping("coupons/{maxPrice}")
     @ResponseStatus(code = HttpStatus.OK)
     public List<Coupon> getCompanyCoupons(@RequestHeader ("Authorization") String token ,@PathVariable double maxPrice){
-     companyService= (CompanyService) tokenManager.getService(token);
         return companyService.getCompanyCoupons(maxPrice);
     }
 
@@ -121,7 +107,6 @@ import javax.servlet.http.HttpServletResponse;
     @ResponseStatus(code = HttpStatus.OK)
     public Company getCompanyDetails(@RequestHeader ("Authorization") String token )
             throws IllegalActionException{
-     companyService= (CompanyService) tokenManager.getService(token);
         return companyService.getCompanyDetails();
     }
 }

@@ -17,7 +17,6 @@ public class CouponsController {
     
     private final CouponService couponService;
 
-
     @GetMapping("coupons")
     @ResponseStatus(code= HttpStatus.OK)
     public List<Coupon> getCoupons () throws IllegalActionException {
