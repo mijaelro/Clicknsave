@@ -20,7 +20,7 @@ public class Image {
     @OneToOne()
     private Coupon coupon;
 
-    @Lob
+//     @Lob
     private byte[] image;
 
     public Image(byte[] image) {
