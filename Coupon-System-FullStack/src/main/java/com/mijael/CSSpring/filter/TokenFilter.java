@@ -85,7 +85,6 @@ public class TokenFilter implements Filter {
                     tokenManager.isControllerAllowed( ClientType.CUSTOMER,token);
                     break;
                 case COMPANY:
-                    companyService = (CompanyService) tokenManager.getService(token);
                     tokenManager.isControllerAllowed(ClientType.COMPANY,token);
                     break;
             }

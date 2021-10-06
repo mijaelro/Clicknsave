@@ -2,6 +2,7 @@ package com.mijael.CSSpring.impl;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import com.mijael.CSSpring.controller.model.UploadCoupon;
 import com.mijael.CSSpring.security.TokenManager;
@@ -116,20 +117,19 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
 				"The coupon by the id: " + id + "doesnt exists, try a diferent id..."));
 	}
 
-
-
-
-
 	@Override
 	public Company getCompanyDetails() throws IllegalActionException {
-		Company company = companyRepository.findById(companyId)
+		Company company = companyRepository.findById(this.companyId)
 				.orElseThrow(() -> new IllegalActionException("company by the id : " + companyId + " doesnt exists"));
 		return company;
 	}
 
 	@Override
 	public List<Coupon> getCompanyCoupons() {
-		 couponRepository.findCouponsByCompanyId(companyId).forEach(System.out::println);
+
+		 couponRepository.findCouponsByCompanyId(companyId);
+//		 .forEach(System.out::println);
+		System.out.println(companyId);
 		return couponRepository.findCouponsByCompanyId(companyId);
 	}
 

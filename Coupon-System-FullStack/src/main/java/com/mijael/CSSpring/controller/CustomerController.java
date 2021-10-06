@@ -23,6 +23,8 @@ import lombok.RequiredArgsConstructor;
 
 public class CustomerController  {
 
+    private final TokenManager tokenManager;
+
     @Autowired
     private CustomerService customerService;
 
@@ -30,12 +32,14 @@ public class CustomerController  {
     @ResponseStatus(code = HttpStatus.CREATED)
     public Coupon purchaseCoupon(@RequestHeader ("Authorization") String token, @RequestBody Coupon coupon)
             throws IllegalActionException, PurchaseException {
-      return customerService.purchaseCoupon(coupon);
+        customerService = (CustomerService) tokenManager.getService(token);
+        return customerService.purchaseCoupon(coupon);
     }
 
     @GetMapping("coupons")
     @ResponseStatus(code = HttpStatus.OK)
     public List<Coupon> getCustomerCoupons(@RequestHeader ("Authorization") String token) {
+        customerService = (CustomerService) tokenManager.getService(token);
         return customerService.getCustomerCoupons();
     }
 
@@ -43,18 +47,21 @@ public class CustomerController  {
     @ResponseStatus(code = HttpStatus.OK)
     public List<Coupon> getCustomerCoupons(@RequestHeader ("Authorization") String token,@PathVariable CategoryType category)
             throws IllegalActionException{
+        customerService = (CustomerService) tokenManager.getService(token);
         return customerService.getCustomerCoupons(category);
     }
 
     @GetMapping("coupons/{maxprice}")
     @ResponseStatus(code = HttpStatus.OK)
     public List<Coupon> getCustomerCoupons(@RequestHeader ("Authorization") String token,@PathVariable double maxPrice) {
+        customerService = (CustomerService) tokenManager.getService(token);
         return customerService.getCustomerCoupons(maxPrice);
     }
 
     @GetMapping("coupon/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public Coupon getCustomerCoupon(@RequestHeader ("Authorization") String token,@PathVariable int id) throws IllegalActionException {
+        customerService = (CustomerService) tokenManager.getService(token);
         return  customerService.getSingleCoupon(id);
     }
 
@@ -62,7 +69,8 @@ public class CustomerController  {
     @ResponseStatus(code = HttpStatus.OK)
     public Customer getCustomerDetails(@RequestHeader ("Authorization") String token)
             throws IllegalActionException {
-       return  customerService.getCustomersDetails();
+        customerService = (CustomerService) tokenManager.getService(token);
+        return  customerService.getCustomersDetails();
     }
 
 }

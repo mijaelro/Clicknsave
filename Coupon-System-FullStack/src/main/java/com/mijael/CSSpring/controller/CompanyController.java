@@ -35,8 +35,9 @@ import javax.servlet.http.HttpServletResponse;
 
    public class CompanyController  {
 
-    private final IOService IOService;
-    private final ImageService imageService;
+    private final TokenManager tokenManager;
+//    private final IOService IOService;
+//    private final ImageService imageService;
 
     @Autowired
     private  CompanyService companyService;
@@ -61,20 +62,23 @@ import javax.servlet.http.HttpServletResponse;
     public @ResponseBody
     UploadCoupon addCoupon(@RequestHeader ("Authorization") String token ,@ModelAttribute UploadCoupon coupon)
             throws IllegalActionException, SaveException, SQLException, IOException {
-     return companyService.addCouponPayLoad(coupon);
+        companyService = (CompanyService) tokenManager.getService(token);
+        return companyService.addCouponPayLoad(coupon);
     }
 
     @PutMapping("coupon")
     @ResponseStatus(code = HttpStatus.OK)
     public Coupon updateCoupon(@RequestHeader ("Authorization") String token ,@RequestBody Coupon coupon)
             throws IllegalActionException, SaveException, IOException {
-    return companyService.updateCoupon(coupon);
+        companyService = (CompanyService) tokenManager.getService(token);
+        return companyService.updateCoupon(coupon);
     }
 
     @DeleteMapping("coupon/{couponId}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteCoupon(@RequestHeader ("Authorization") String token ,@PathVariable int couponId)
             throws IllegalActionException{
+        companyService = (CompanyService) tokenManager.getService(token);
         companyService.deleteCoupon(couponId);
     }
 
@@ -82,24 +86,28 @@ import javax.servlet.http.HttpServletResponse;
     @ResponseStatus(code = HttpStatus.OK)
     public Coupon getCoupon(@RequestHeader ("Authorization") String token ,@PathVariable int couponId)
             throws IllegalActionException{
+        companyService = (CompanyService) tokenManager.getService(token);
         return companyService.getOneCoupon(couponId);
     }
 
     @GetMapping("coupons")
     @ResponseStatus(code = HttpStatus.OK)
-    public List<Coupon> getCompanyCoupons(@RequestHeader ("Authorization") String token ) {
-     return companyService.getCompanyCoupons();
+    public List<Coupon> getCompanyCoupons(@RequestHeader ("Authorization") String token) {
+        companyService = (CompanyService) tokenManager.getService(token);
+        return companyService.getCompanyCoupons();
     }
 
     @GetMapping("coupons/{category}")
     @ResponseStatus(code = HttpStatus.OK)
     public List<Coupon> getCompanyCoupons(@RequestHeader ("Authorization") String token ,@PathVariable CategoryType category) {
+        companyService = (CompanyService) tokenManager.getService(token);
         return companyService.getCompanyCoupons(category);
     }
 
     @GetMapping("coupons/{maxPrice}")
     @ResponseStatus(code = HttpStatus.OK)
     public List<Coupon> getCompanyCoupons(@RequestHeader ("Authorization") String token ,@PathVariable double maxPrice){
+        companyService = (CompanyService) tokenManager.getService(token);
         return companyService.getCompanyCoupons(maxPrice);
     }
 
@@ -107,6 +115,7 @@ import javax.servlet.http.HttpServletResponse;
     @ResponseStatus(code = HttpStatus.OK)
     public Company getCompanyDetails(@RequestHeader ("Authorization") String token )
             throws IllegalActionException{
+        companyService = (CompanyService) tokenManager.getService(token);
         return companyService.getCompanyDetails();
     }
 }
